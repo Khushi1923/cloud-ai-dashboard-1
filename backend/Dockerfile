@@ -12,9 +12,11 @@ RUN npm install
 # Copy all other source code to the container
 COPY . .
 
-# Expose port 3000 (the port on which your Express app runs)
+# Build TypeScript project 
+RUN npm run build
+
+# Expose the correct port
 EXPOSE 5000
 
-# Command to run the application
-# RUN npm run dev
-CMD ["npm", "run","dev"]
+# Run the compiled JavaScript server
+CMD ["node", "dist/server.js"]
